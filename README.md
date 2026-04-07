@@ -20,14 +20,14 @@ bun run dev
 
 ## Scripts
 
-| Script | Description |
-| --- | --- |
-| `bun run dev` | Start dev server |
-| `bun run build` | Build static site |
-| `bun run preview` | Preview built site |
-| `bun run test` | Run Playwright tests |
-| `bun run test:ui` | Run tests with Playwright UI |
-| `bun run typecheck` | Type check |
+| Script              | Description                  |
+| ------------------- | ---------------------------- |
+| `bun run dev`       | Start dev server             |
+| `bun run build`     | Build static site            |
+| `bun run preview`   | Preview built site           |
+| `bun run test`      | Run Playwright tests         |
+| `bun run test:ui`   | Run tests with Playwright UI |
+| `bun run typecheck` | Type check                   |
 
 ## Project Structure
 
@@ -49,6 +49,7 @@ tests/
 The included GitHub Actions workflow deploys to Cloudflare Pages on push to `master`.
 
 Set up these secrets/variables in your repo:
+
 - **Secret**: `CLOUDFLARE_API_TOKEN`
 - **Variable**: `CLOUDFLARE_ACCOUNT_ID`
 

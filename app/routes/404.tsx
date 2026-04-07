@@ -4,7 +4,10 @@ import { Link } from "react-router";
 export const meta: MetaFunction = () => {
   return [
     { title: "Page Not Found" },
-    { name: "description", content: "The page you're looking for doesn't exist." },
+    {
+      name: "description",
+      content: "The page you're looking for doesn't exist.",
+    },
   ];
 };
 

@@ -18,18 +18,18 @@ test.describe("Home Page", () => {
     const metaDescription = page.locator('meta[name="description"]');
     await expect(metaDescription).toHaveAttribute(
       "content",
-      "A static site built with React Router and Vite."
+      "A static site built with React Router and Vite.",
     );
   });
 
   test("has Open Graph tags", async ({ page }) => {
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",
-      "My Site"
+      "My Site",
     );
     await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
       "content",
-      "website"
+      "website",
     );
   });
 });
