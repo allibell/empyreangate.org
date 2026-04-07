@@ -16,10 +16,11 @@ export default function NotFound() {
     <main className="container">
       <section className="hero">
         <h1>404</h1>
-        <p className="subtitle">
+        <p className="tagline">Page Not Found</p>
+        <p className="intro">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <Link to="/" className="cta">
+        <Link to="/" className="back-link">
           Go back home
         </Link>
       </section>

@@ -112,6 +112,38 @@ a:focus-visible {
   text-decoration: none;
 }
 
+.tagline {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.intro {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--color-primary-hover);
+}
+
+.back-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 code {
   font-family: var(--font-mono);
   font-size: 0.875em;
