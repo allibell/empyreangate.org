@@ -1,5 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import "@fontsource-variable/inter";
+import "@fontsource-variable/inter/index.css";
 import "./styles/global.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
