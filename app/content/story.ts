@@ -1,0 +1,168 @@
+/**
+ * The site's prose, as data, so it can be edited without touching layout.
+ * Each section is a heading plus paragraphs; a paragraph may carry inline
+ * links by name (see `Prose` in home.tsx).
+ */
+
+export interface Paragraph {
+  text: string;
+  /** Optional link rendered after the text. */
+  link?: { label: string; href: string; external?: boolean };
+}
+
+export interface Section {
+  id: string;
+  kicker: string;
+  heading: string;
+  paragraphs: Paragraph[];
+}
+
+export const HERO = {
+  kicker: "Entheos · Black Rock City and beyond",
+  heading: "The Empyrean Gate",
+  lede: "Sixty-four spokes of light. Twenty-four thousand pixels. One gateway, with a fire beneath it.",
+  sub: "Built by the Entheos community for Burning Man 2022, and back every year since.",
+};
+
+export const PIECE: Section = {
+  id: "piece",
+  kicker: "The piece",
+  heading: "A canopy by day. A ring of light by night.",
+  paragraphs: [
+    {
+      text: "The Empyrean Gate is a sixty-foot shade structure lofted twenty-one feet above the ground, with a thirteen-foot gateway at its centre. Beneath the gateway hangs the Empyrean cauldron, its fire burning about a foot above the ground. By day the canopy shades a civic plaza at the Entheos camp. After dark it becomes a fifty-foot ring of light over a dance floor.",
+    },
+    {
+      text: "Empyrean is the highest heaven: the sphere of fire in the old cosmologies, from the Greek empyros, “in the fire.” The gate is a threshold between the ground and that sky, and the cauldron is the fire that joins them.",
+    },
+    {
+      text: "Entheos conceived it as a place that invites contemplation: of self, of others, and of collaborative purpose. It is also, most nights, where people dance.",
+      link: {
+        label: "The Entheos community",
+        href: "https://www.entheosrising.org/",
+        external: true,
+      },
+    },
+  ],
+};
+
+export const LIGHT: Section = {
+  id: "light",
+  kicker: "The light",
+  heading: "Every frame, computed from scratch.",
+  paragraphs: [
+    {
+      text: "Sixty-four spokes of high-density addressable LED run from the rim of the canopy in toward the gateway: 378 pixels each, 24,192 in all, fed by sixteen pixel controllers over sACN at sixty frames a second.",
+    },
+    {
+      text: "The gate runs on an open-source software stack written for it. A GPU renders a stack of layers for every pixel on every frame: noise fields, harmonic rings, spirals, fire, sparkles, chases, and more, each a pure function of a pixel’s place on the ring, blended and pushed to the wire with no allocations in the loop. The DJ’s audio drives it. Beat tracking and band energies steer the layers, and a direct link to the decks keeps it on the grid even when the DJ is only in headphones.",
+      link: {
+        label: "Read the source",
+        href: "https://github.com/TomSawyerLabs/empyrean-gate",
+        external: true,
+      },
+    },
+    {
+      text: "Every screen on the local network is an equal client: the operator’s desktop, a laptop at the booth, the crew’s phones. A public page lets visitors draw on the gate with a finger, drop effects, and play games on it from their own phone, standing under it.",
+    },
+    {
+      text: "The render at the top of this page is a browser port of a few of those same layers on the same geometry. Tap it. The real thing runs them on a GPU at the gate, where every dot is a light in the air.",
+    },
+  ],
+};
+
+export interface Appearance {
+  year: string;
+  event: string;
+  place: string;
+  note?: string;
+  /** Marks the next date rather than a past one. */
+  upcoming?: boolean;
+}
+
+/**
+ * Where the gate has been. Keep this honest: an entry here is a claim.
+ *
+ * unSCruz: 2023, 2024, 2025 (confirmed by Cameron). Love Burn: 2024 is
+ * sourced; other years unconfirmed, so not listed.
+ */
+export const APPEARANCES: Appearance[] = [
+  {
+    year: "2022",
+    event: "Burning Man",
+    place: "Black Rock City, Nevada",
+    note: "The core structure is raised for the first time at the Entheos plaza.",
+  },
+  {
+    year: "2023",
+    event: "unSCruz",
+    place: "Santa Cruz, California",
+    note: "First trip off the playa, to the Santa Cruz regional.",
+  },
+  {
+    year: "2023",
+    event: "Burning Man",
+    place: "Black Rock City, Nevada",
+  },
+  {
+    year: "2024",
+    event: "Love Burn",
+    place: "Miami, Florida",
+  },
+  {
+    year: "2024",
+    event: "unSCruz",
+    place: "Santa Cruz, California",
+  },
+  {
+    year: "2024",
+    event: "Burning Man",
+    place: "Black Rock City, Nevada",
+  },
+  {
+    year: "2025",
+    event: "unSCruz",
+    place: "Santa Cruz, California",
+  },
+  {
+    year: "2025",
+    event: "Burning Man",
+    place: "Black Rock City, Nevada",
+  },
+  {
+    year: "2026",
+    event: "Burning Man",
+    place: "Black Rock City, Nevada",
+  },
+  {
+    year: "Oct 17, 2026",
+    event: "Burning Man Decompression",
+    place: "The Loom, Oakland, California",
+    note: "Next.",
+    upcoming: true,
+  },
+];
+
+export const WHERE = {
+  id: "where",
+  kicker: "Where it has been",
+  heading: "Back every year since 2022.",
+};
+
+export const GALLERY = {
+  id: "photos",
+  kicker: "Photos",
+  heading: "Under the ring.",
+  instagramLede: "Were you there? Share your photos with",
+  crewLede:
+    "The gate is built, hauled, raised, lit and taken down again by volunteers from the Entheos community.",
+};
+
+export const PEOPLE = {
+  id: "people",
+  kicker: "People",
+  heading: "Made by a community.",
+  lede: "The gate is built, hauled, raised, lit and taken down again by volunteers from the Entheos community. These are the hands behind it today, and the ones it was built on.",
+  crewHeading: "The gate today",
+  earlierHeading: "Earlier contributors",
+};
