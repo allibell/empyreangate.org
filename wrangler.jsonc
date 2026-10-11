@@ -1,0 +1,19 @@
+{
+  // Cloudflare Workers static-assets deploy, run by Workers Builds on every push
+  // to master. There is no Worker script: the whole site is prerendered HTML and
+  // the host canonicalisation (www, .com → empyreangate.org) is a zone redirect
+  // rule owned by github.com/cinderblock/ops, which also provisions this worker
+  // and attaches the custom domain. The name here must match that worker.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "empyreangate-org",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./build/client",
+    // Every route is prerendered to its own index.html, so a miss is a real
+    // miss and should get the 404 page rather than an SPA shell.
+    "not_found_handling": "404-page",
+  },
+  "observability": {
+    "enabled": true,
+  },
+}
