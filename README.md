@@ -25,7 +25,7 @@ bun run dev
 | `bun run build`     | Prerender to `build/client`, then emit 404.html + sitemap |
 | `bun run preview`   | Serve the built site on :4180                             |
 | `bun run test`      | Playwright, against a fresh build (not the dev server)    |
-| `bun run test:unit` | Bun unit tests for the render engine                      |
+| `bun run test:unit` | Bun unit tests: render engine, build context              |
 | `bun run typecheck` | `react-router typegen && tsc`                             |
 | `bun run fmt`       | Format with oxfmt                                         |
 | `bun run photos`    | Web renditions of `photos/` + the photo manifest          |
@@ -97,6 +97,12 @@ never deploys and holds no Cloudflare credential.
 | any branch but master  | `npx wrangler preview`          | A Preview at `https://<branch>-empyreangate-org.isozilla.workers.dev` (noindex) |
 | `master`, pre-launch   | `bunx wrangler versions upload` | A new version, **not** made live; empyreangate.org is unchanged                 |
 | `master`, after launch | `bunx wrangler deploy`          | Live at https://empyreangate.org                                                |
+
+Preview builds mark themselves unindexable: `scripts/postbuild.ts` writes a
+`_headers` file with `X-Robots-Tag: noindex` and a disallow-all `robots.txt`
+whenever Workers Builds is building a branch other than master
+(`scripts/build-context.ts`). Cloudflare adds that header to workers.dev
+Previews itself, but not to custom-domain ones like `dev.empyreangate.org`.
 
 Day to day, work on a branch (`dev`, or one per change) and open the Preview
 URL Cloudflare reports on the build. Going live is a dashboard change: set the
