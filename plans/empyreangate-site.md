@@ -40,6 +40,11 @@ interactive, locally rendered version of the gate's light patterns.
   `@entheosrising` and names no hashtag until one is chosen.
 - **Photo originals are committed** in `photos/` (Cameron: "we won't have too
   many"). Web renditions are generated at build time, not committed.
+- **The fire is worded ambiguously** (Cameron, 2026-10-11): the cauldron may or
+  may not travel, so the copy says "the fire beneath it" and lets that be the
+  cauldron or the people. The piece section says both outright.
+- **Timeline entries carry months** (Burning Man Aug–Sep, unSCruz May, Love
+  Burn Feb) with an ISO `date` for the first day.
 - **People:** a names-only "The gate today" list (The Entheos Community, James
   Tramel, Cameron Tacklind, Allison Bellows, Theodore Wahrburg) and an
   "Earlier contributors" list with roles, where Eric Vicenti is credited for
@@ -91,12 +96,20 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
        six widths), reduced motion, 404.
 6. [x] Green locally (fmt, typecheck, 9 unit tests, 43 Playwright tests in
        chromium); visual pass at 393 px and 1440 px; `public/og.png` generated.
-7. [ ] **← current, waiting on Cameron:** create `cinderblock/empyreangate.org`
-       on GitHub, commit, push `master`, confirm CI is green there. Not done:
-       no git operations without an explicit go-ahead.
-8. [ ] ops: Cameron approves + pushes the domain config; connects Workers
-       Builds (dashboard → the worker → Settings → Builds), build
-       `bun run build`, deploy `bunx wrangler deploy`.
+7. [x] `cinderblock/empyreangate.org` created and pushed (3 commits on the
+       template, 2026-10-11); first CI run green.
+8. [ ] **← current** Connect Workers Builds for previews only (2026-10-12,
+       Cameron: "don't publish anything real yet"). ops applied the domain
+       config (`90efcf5`); the worker is ops' 503 stub. Cameron, in the
+       dashboard: Workers & Pages → `empyreangate-org` → Settings → Builds →
+       Connect → `cinderblock/empyreangate.org`, production branch `master`,
+       build `bun run build`, **deploy `bunx wrangler versions upload`**
+       (uploads, never activates), preview command left at its default,
+       build variable `BUN_VERSION=1.4.2`, Enable Preview Builds on. Then a
+       push to `dev` builds a Preview at
+       `https://dev-empyreangate-org.isozilla.workers.dev`.
+       8b. [ ] Launch: change the deploy command to `bunx wrangler deploy`, push or
+       retry a master build. That replaces the stub on empyreangate.org.
 9. [ ] Verify live: `/`, `/nope`, both `www.` hosts and the `.com` apex.
 10. [x] Photo pipeline: `photos/` originals → `bun run photos` (sharp) →
         `public/photos/` renditions + generated manifest; exercised with a
@@ -136,6 +149,25 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
 - Headless Chromium renders the WebGL dots noticeably dimmer than a real GPU
   (SwiftShader, no MSAA); brightness was tuned with that in mind (`u_master`
   1.25, dot size 3x spacing) and the soft clip keeps real GPUs from blowing out.
+
+- **Workers Previews, not Version URLs, for branch builds.** `wrangler
+preview` (Wrangler ≥ 4.135, open beta, launched 2026-09-22) gives a stable
+  per-branch URL `<branch>-<worker>.<subdomain>.workers.dev` that sends
+  `X-Robots-Tag: noindex`. It requires a `previews` block in wrangler.jsonc,
+  even empty. Previews are public by default; Cloudflare Access can gate them.
+- **The stub had workers.dev and preview URLs both off** (API, 2026-10-12:
+  `{'enabled': False, 'previews_enabled': False}`; account subdomain
+  `isozilla`). Wrangler ties preview URLs to `workers_dev` unless
+  `preview_urls` is set, and other projects saw preview builds succeed with no
+  URL because of it. So wrangler.jsonc sets `workers_dev: false` (no duplicate
+  production hostname) and `preview_urls: true` explicitly. ops' worker
+  resource carries only `{ name }`, so these flags don't fight the ops sync.
+- **Workers Builds' image defaults to Bun 1.2.15**; `bun.lock` was written by
+  1.4.2. Pin `BUN_VERSION` as a build variable or `--frozen-lockfile` may
+  refuse the lockfile.
+- **Pre-launch guard is the deploy command**, not branch discipline: master
+  builds run `wrangler versions upload`, which uploads a version without
+  activating it, so nothing reaches empyreangate.org even by accident.
 
 ## Open questions for the user
 

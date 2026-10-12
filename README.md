@@ -87,11 +87,24 @@ their dimensions. EXIF, GPS included, is stripped. A slot in
 
 ## Deployment
 
-**Cloudflare Workers Builds** deploys this repo. Every push to `master` builds
-with `bun run build` and deploys with `wrangler deploy` as Workers static
-assets, using `wrangler.jsonc`. GitHub Actions runs the checks (format,
-typecheck, build, Playwright) on pushes and pull requests but never deploys and
-holds no Cloudflare credential.
+**Cloudflare Workers Builds** builds this repo with `bun run build` and ships
+it as Workers static assets, using `wrangler.jsonc`. GitHub Actions runs the
+checks (format, typecheck, build, Playwright) on pushes and pull requests but
+never deploys and holds no Cloudflare credential.
+
+| Push to                | Workers Builds runs             | Result                                                                          |
+| ---------------------- | ------------------------------- | ------------------------------------------------------------------------------- |
+| any branch but master  | `npx wrangler preview`          | A Preview at `https://<branch>-empyreangate-org.isozilla.workers.dev` (noindex) |
+| `master`, pre-launch   | `bunx wrangler versions upload` | A new version, **not** made live; empyreangate.org is unchanged                 |
+| `master`, after launch | `bunx wrangler deploy`          | Live at https://empyreangate.org                                                |
+
+Day to day, work on a branch (`dev`, or one per change) and open the Preview
+URL Cloudflare reports on the build. Going live is a dashboard change: set the
+deploy command to `bunx wrangler deploy` and push (or retry) a master build.
+
+Workers Builds settings, for reference: production branch `master`, build
+command `bun run build`, build variable `BUN_VERSION` matching the Bun that
+wrote `bun.lock` (the image's default Bun is older), preview builds enabled.
 
 The worker, the custom domain, and the redirects (`www.`, and both
 `empyreangate.com` hostnames, all to `https://empyreangate.org/`) are managed
