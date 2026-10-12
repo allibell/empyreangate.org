@@ -102,9 +102,12 @@ Day to day, work on a branch (`dev`, or one per change) and open the Preview
 URL Cloudflare reports on the build. Going live is a dashboard change: set the
 deploy command to `bunx wrangler deploy` and push (or retry) a master build.
 
-Workers Builds settings, for reference: production branch `master`, build
-command `bun run build`, build variable `BUN_VERSION` matching the Bun that
-wrote `bun.lock` (the image's default Bun is older), preview builds enabled.
+Workers Builds settings, for reference: production branch `master`; build
+command `bun install --frozen-lockfile && bun run build`; preview command left
+at its default; build variables `SKIP_DEPENDENCY_INSTALL=1` (so the image's own
+install step can't pick a different package manager) and `BUN_VERSION`
+matching the Bun that wrote `bun.lock` (the image's default Bun is older);
+preview builds enabled.
 
 The worker, the custom domain, and the redirects (`www.`, and both
 `empyreangate.com` hostnames, all to `https://empyreangate.org/`) are managed

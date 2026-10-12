@@ -103,9 +103,10 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
        config (`90efcf5`); the worker is ops' 503 stub. Cameron, in the
        dashboard: Workers & Pages → `empyreangate-org` → Settings → Builds →
        Connect → `cinderblock/empyreangate.org`, production branch `master`,
-       build `bun run build`, **deploy `bunx wrangler versions upload`**
-       (uploads, never activates), preview command left at its default,
-       build variable `BUN_VERSION=1.4.2`, Enable Preview Builds on. Then a
+       build `bun install --frozen-lockfile && bun run build`, **deploy
+       `bunx wrangler versions upload`** (uploads, never activates), preview
+       command left at its default, build variables `BUN_VERSION=1.4.2` and
+       `SKIP_DEPENDENCY_INSTALL=1`, Enable Preview Builds on. Then a
        push to `dev` builds a Preview at
        `https://dev-empyreangate-org.isozilla.workers.dev`.
        8b. [ ] Launch: change the deploy command to `bunx wrangler deploy`, push or
@@ -164,7 +165,9 @@ preview` (Wrangler ≥ 4.135, open beta, launched 2026-09-22) gives a stable
   resource carries only `{ name }`, so these flags don't fight the ops sync.
 - **Workers Builds' image defaults to Bun 1.2.15**; `bun.lock` was written by
   1.4.2. Pin `BUN_VERSION` as a build variable or `--frozen-lockfile` may
-  refuse the lockfile.
+  refuse the lockfile. The build-image docs also don't say whether `bun.lock`
+  is detected for the automatic install, so that step is skipped
+  (`SKIP_DEPENDENCY_INSTALL=1`) and the build command installs with Bun.
 - **Pre-launch guard is the deploy command**, not branch discipline: master
   builds run `wrangler versions upload`, which uploads a version without
   activating it, so nothing reaches empyreangate.org even by accident.
