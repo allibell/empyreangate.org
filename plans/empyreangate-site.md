@@ -121,7 +121,7 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
 11. [ ] Cameron drops the originals into `photos/`; point each slot's `asset`
         at a slug in `gallery.ts`.
 12. [x] Regional years (unSCruz 2023–2025) and the crew list, from Cameron.
-13. [ ] Love Burn years beyond 2024, if any.
+13. [x] Love Burn: once, 2024 (Cameron, 2026-10-12). Timeline is complete.
 
 ## Later
 
@@ -177,10 +177,8 @@ preview` (Wrangler ≥ 4.135, open beta, launched 2026-09-22) gives a stable
 
 ## Open questions for the user
 
-1. Which years did the gate go to Love Burn besides 2024? (unSCruz is settled:
-   2023, 2024, 2025.)
-2. Photos: drop the originals in `photos/` whenever ready; nothing else is
-   needed from you for the gallery.
+None. Cameron, 2026-10-12: "stop asking." Remaining work waits on things he
+will hand over unprompted (photos in `photos/`) or decide on his own (launch).
 
 ## Things not to do
 

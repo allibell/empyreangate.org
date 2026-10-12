@@ -87,8 +87,8 @@ export interface Appearance {
  * Where the gate has been. Keep this honest: an entry here is a claim.
  *
  * unSCruz: 2023, 2024, 2025 (confirmed by Cameron; May 4–7, May 2–5, May 1–3).
- * Love Burn: 2024 is sourced (mid-February); other years unconfirmed, so not
- * listed. Burning Man runs the last week of August into September.
+ * Love Burn: once, in 2024 (confirmed by Cameron). Burning Man runs the last
+ * week of August into September.
  */
 export const APPEARANCES: Appearance[] = [
   {
