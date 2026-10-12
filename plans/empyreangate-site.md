@@ -45,6 +45,14 @@ interactive, locally rendered version of the gate's light patterns.
   cauldron or the people. The piece section says both outright.
 - **Timeline entries carry months** (Burning Man Aug–Sep, unSCruz May, Love
   Burn Feb) with an ISO `date` for the first day.
+- **Contributor links** (Cameron, 2026-10-12): each person links to their own
+  site where they have one: Cameron, Ted, Allison (GitHub `allibell`, the
+  gate software's second-largest contributor), Anthony Fieldman, Eric
+  Vicenti (`eric.vicenti.net`, from his GitHub profile). The 2022
+  fabrication and lighting credits link their studios (Kennedy
+  Fabrications, Sight Unseen Studios), as Entheos' own gate page does. James
+  Tramel and the fabricators individually have no site of their own found.
+  This supersedes "original-design credit is one line of names".
 - **People:** a names-only "The gate today" list (The Entheos Community, James
   Tramel, Cameron Tacklind, Allison Bellows, Theodore Wahrburg) and an
   "Earlier contributors" list with roles, where Eric Vicenti is credited for

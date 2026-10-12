@@ -1,6 +1,6 @@
 import type { MetaFunction } from "react-router";
 import GateRender from "../components/GateRender";
-import { CREW, EARLIER } from "../content/credits";
+import { CREW, EARLIER, type Person } from "../content/credits";
 import { PHOTOS } from "../content/gallery";
 import { PHOTO_MANIFEST } from "../content/photo-manifest";
 import { ARRAY, SITE } from "../content/site";
@@ -95,6 +95,15 @@ function External({
     <a href={href} rel="noopener" target="_blank">
       {children}
     </a>
+  );
+}
+
+/** A name, linked to their own site when they have one. */
+function PersonName({ person }: { person: Person }) {
+  return person.href ? (
+    <External href={person.href}>{person.name}</External>
+  ) : (
+    <>{person.name}</>
   );
 }
 
@@ -366,11 +375,7 @@ export default function Home() {
               <ul className="crew">
                 {CREW.map((p) => (
                   <li key={p.name}>
-                    {p.href ? (
-                      <External href={p.href}>{p.name}</External>
-                    ) : (
-                      p.name
-                    )}
+                    <PersonName person={p} />
                   </li>
                 ))}
               </ul>
@@ -378,10 +383,25 @@ export default function Home() {
             <div>
               <h3>{PEOPLE.earlierHeading}</h3>
               <ul className="earlier">
-                {EARLIER.map((p) => (
-                  <li key={p.name}>
-                    <span className="person-name">{p.name}</span>
-                    {p.role && <span className="person-role">{p.role}</span>}
+                {EARLIER.map((credit) => (
+                  <li key={credit.role}>
+                    <span className="person-name">
+                      {credit.people.map((p, i) => (
+                        <span key={p.name}>
+                          {i > 0 && ", "}
+                          <PersonName person={p} />
+                        </span>
+                      ))}
+                    </span>
+                    <span className="person-role">
+                      {credit.role}
+                      {credit.studio && (
+                        <>
+                          {" · "}
+                          <PersonName person={credit.studio} />
+                        </>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>

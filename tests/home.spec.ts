@@ -80,6 +80,35 @@ test.describe("Home", () => {
   });
 });
 
+test.describe("People", () => {
+  test("links contributors to their own sites", async ({ page }) => {
+    await page.goto("/");
+    const people = page.locator(".people");
+    for (const [name, href] of [
+      ["Cameron Tacklind", "https://cameron.tacklind.com/"],
+      ["Theodore Wahrburg", "https://ted.wahrburg.dev/"],
+      ["Allison Bellows", "https://github.com/allibell"],
+      ["Anthony Fieldman", "https://www.anthonyfieldman.com/"],
+      ["Eric Vicenti", "https://eric.vicenti.net/"],
+      ["Kennedy Fabrications", "https://www.kennedyfabrications.com/"],
+      ["Sight Unseen Studios", "https://www.sightunseenstudios.com/"],
+    ]) {
+      const link = people.getByRole("link", { name });
+      await expect(link).toHaveAttribute("href", href);
+      await expect(link).toHaveAttribute("target", "_blank");
+    }
+  });
+
+  test("lists people without a site as plain names", async ({ page }) => {
+    await page.goto("/");
+    const people = page.locator(".people");
+    await expect(people.getByText("James Tramel").first()).toBeVisible();
+    await expect(
+      people.getByRole("link", { name: "James Tramel" }),
+    ).toHaveCount(0);
+  });
+});
+
 test.describe("404", () => {
   test("is a real document with a way home", async ({ page }) => {
     await page.goto("/404");

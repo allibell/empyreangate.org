@@ -1,7 +1,6 @@
 export interface Person {
   name: string;
-  /** What they do or did. Omitted for the crew list, where names are enough. */
-  role?: string;
+  /** Their own site. Only ones they publish themselves. */
   href?: string;
 }
 
@@ -12,30 +11,46 @@ export interface Person {
 export const CREW: Person[] = [
   { name: "The Entheos Community", href: "https://www.entheosrising.org/" },
   { name: "James Tramel" },
-  { name: "Cameron Tacklind" },
-  { name: "Allison Bellows" },
-  { name: "Theodore Wahrburg" },
+  { name: "Cameron Tacklind", href: "https://cameron.tacklind.com/" },
+  // Her GitHub: second-largest contributor to the gate's software.
+  { name: "Allison Bellows", href: "https://github.com/allibell" },
+  { name: "Theodore Wahrburg", href: "https://ted.wahrburg.dev/" },
 ];
 
-/**
- * Earlier contributors whose work the gate was built on. Original-design
- * credit stays as a line of names and nothing more.
- */
-export const EARLIER: Person[] = [
+export interface EarlierCredit {
+  role: string;
+  people: Person[];
+  /** A studio or shop credited for the work as a whole. */
+  studio?: Person;
+}
+
+/** Earlier contributors whose work the gate was built on. */
+export const EARLIER: EarlierCredit[] = [
   {
-    name: "Anthony Fieldman, James Tramel",
     role: "Original design, 2022",
+    people: [
+      { name: "Anthony Fieldman", href: "https://www.anthonyfieldman.com/" },
+      { name: "James Tramel" },
+    ],
   },
   {
-    name: "Michael Kennedy, James Scott",
     role: "Fabrication, 2022",
+    people: [{ name: "Michael Kennedy" }, { name: "James Scott" }],
+    studio: {
+      name: "Kennedy Fabrications",
+      href: "https://www.kennedyfabrications.com/",
+    },
   },
   {
-    name: "Andris Kasparovics",
     role: "Original lighting, 2022",
+    people: [{ name: "Andris Kasparovics" }],
+    studio: {
+      name: "Sight Unseen Studios",
+      href: "https://www.sightunseenstudios.com/",
+    },
   },
   {
-    name: "Eric Vicenti",
     role: "Light software for unSCruz 2024",
+    people: [{ name: "Eric Vicenti", href: "https://eric.vicenti.net/" }],
   },
 ];
