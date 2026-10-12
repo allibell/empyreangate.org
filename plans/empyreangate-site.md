@@ -98,7 +98,7 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
        chromium); visual pass at 393 px and 1440 px; `public/og.png` generated.
 7. [x] `cinderblock/empyreangate.org` created and pushed (3 commits on the
        template, 2026-10-11); first CI run green.
-8. [ ] **← current** Connect Workers Builds for previews only (2026-10-12,
+8. [x] Connected by Cameron 2026-10-12. Connect Workers Builds for previews only (2026-10-12,
        Cameron: "don't publish anything real yet"). ops applied the domain
        config (`90efcf5`); the worker is ops' 503 stub. Cameron, in the
        dashboard: Workers & Pages → `empyreangate-org` → Settings → Builds →
@@ -109,6 +109,9 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
        `SKIP_DEPENDENCY_INSTALL=1`, Enable Preview Builds on. Then a
        push to `dev` builds a Preview at
        `https://dev-empyreangate-org.isozilla.workers.dev`.
+       8a. [ ] **← current** First preview build from `dev`; verify
+       `https://dev-empyreangate-org.isozilla.workers.dev` and that
+       empyreangate.org still shows the stub.
        8b. [ ] Launch: change the deploy command to `bunx wrangler deploy`, push or
        retry a master build. That replaces the stub on empyreangate.org.
 9. [ ] Verify live: `/`, `/nope`, both `www.` hosts and the `.com` apex.
