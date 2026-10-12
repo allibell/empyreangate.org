@@ -92,11 +92,11 @@ it as Workers static assets, using `wrangler.jsonc`. GitHub Actions runs the
 checks (format, typecheck, build, Playwright) on pushes and pull requests but
 never deploys and holds no Cloudflare credential.
 
-| Push to                | Workers Builds runs             | Result                                                                          |
-| ---------------------- | ------------------------------- | ------------------------------------------------------------------------------- |
-| any branch but master  | `npx wrangler preview`          | A Preview at `https://<branch>-empyreangate-org.isozilla.workers.dev` (noindex) |
-| `master`, pre-launch   | `bunx wrangler versions upload` | A new version, **not** made live; empyreangate.org is unchanged                 |
-| `master`, after launch | `bunx wrangler deploy`          | Live at https://empyreangate.org                                                |
+| Push to                | Workers Builds runs             | Result                                                                                        |
+| ---------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| any branch but master  | `npx wrangler preview`          | A Preview at `https://<branch>.empyreangate.org` (noindex), e.g. https://dev.empyreangate.org |
+| `master`, pre-launch   | `bunx wrangler versions upload` | A new version, **not** made live; empyreangate.org is unchanged                               |
+| `master`, after launch | `bunx wrangler deploy`          | Live at https://empyreangate.org                                                              |
 
 Preview builds mark themselves unindexable: `scripts/postbuild.ts` writes a
 `_headers` file with `X-Robots-Tag: noindex` and a disallow-all `robots.txt`

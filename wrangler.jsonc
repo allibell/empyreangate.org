@@ -6,9 +6,9 @@
   // attaches the custom domain. The name here must match that worker.
   //
   // Branches other than master build a Worker Preview at
-  // https://<branch>-empyreangate-org.isozilla.workers.dev (noindex). What
-  // master does is set in the dashboard's deploy command; see README
-  // "Deployment".
+  // https://<branch>.empyreangate.org (ops turns on preview routing for the
+  // custom domain; the build marks itself noindex). What master does is set in
+  // the dashboard's deploy command; see README "Deployment".
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "empyreangate-org",
   "compatibility_date": "2026-10-01",

@@ -3,9 +3,9 @@
  *
  * Workers Builds sets `WORKERS_CI=1` and `WORKERS_CI_BRANCH` on every build.
  * Pushes to `master` are production builds; every other branch becomes a
- * Worker Preview (`<branch>.empyreangate.org` / `<branch>-empyreangate-org.
- * isozilla.workers.dev`). Previews must never be indexed: Cloudflare adds
- * `X-Robots-Tag: noindex` on workers.dev but not on custom-domain Previews.
+ * Worker Preview at `<branch>.empyreangate.org`. Previews must never be
+ * indexed: Cloudflare adds `X-Robots-Tag: noindex` on workers.dev Previews
+ * but not on custom-domain ones like these.
  *
  * Anywhere else (local builds, GitHub Actions) the build is treated as
  * production, which is what gets tested.

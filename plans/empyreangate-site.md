@@ -106,13 +106,15 @@ reduced motion. Falls back to a still SVG of 64 spokes without WebGL2.
        build `bun install --frozen-lockfile && bun run build`, **deploy
        `bunx wrangler versions upload`** (uploads, never activates), preview
        command left at its default, build variables `BUN_VERSION=1.4.2` and
-       `SKIP_DEPENDENCY_INSTALL=1`, Enable Preview Builds on. Then a
-       push to `dev` builds a Preview at
-       `https://dev-empyreangate-org.isozilla.workers.dev`.
-       8a. [ ] **← current** First preview build from `dev`; verify
-       `https://dev-empyreangate-org.isozilla.workers.dev` and that
-       empyreangate.org still shows the stub.
-       8b. [ ] Launch: change the deploy command to `bunx wrangler deploy`, push or
+       `SKIP_DEPENDENCY_INSTALL=1`, Enable Preview Builds on.
+       8a. [x] Previews live at `https://<branch>.empyreangate.org` (2026-10-12).
+       The workers.dev Preview URL never worked (the worker's preview URLs are
+       off and only a full `wrangler deploy` would apply `preview_urls`), so ops
+       turned on preview routing for the custom domain instead (ops `102fbb9`,
+       `worker: { previews: true }`). Verified: `https://dev.empyreangate.org`
+       200 with `x-robots-tag: noindex`, robots.txt disallows all;
+       empyreangate.org still the 503 stub; www still 301s.
+       8b. [ ] **← current** Launch, when Cameron decides: change the deploy command to `bunx wrangler deploy`, push or
        retry a master build. That replaces the stub on empyreangate.org.
 9. [ ] Verify live: `/`, `/nope`, both `www.` hosts and the `.com` apex.
 10. [x] Photo pipeline: `photos/` originals → `bun run photos` (sharp) →
@@ -174,6 +176,14 @@ preview` (Wrangler ≥ 4.135, open beta, launched 2026-09-22) gives a stable
 - **Pre-launch guard is the deploy command**, not branch discipline: master
   builds run `wrangler versions upload`, which uploads a version without
   activating it, so nothing reaches empyreangate.org even by accident.
+
+- **Previews ignore `not_found_handling`** (open beta; cloudflare/workers-sdk
+  issue 16047). A missing path on `dev.empyreangate.org` returns a bare 9-byte
+  "Not found" instead of `404.html`, and `_headers` isn't applied to that
+  response. Production honours both, so the launched site is unaffected.
+  Don't build a workaround Worker for it.
+- **Workers Builds preview builds do set `WORKERS_CI_BRANCH`** (to `dev`), so
+  the noindex switch in `scripts/build-context.ts` works as designed.
 
 ## Open questions for the user
 
