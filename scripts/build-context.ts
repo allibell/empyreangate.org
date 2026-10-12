@@ -12,6 +12,8 @@
  */
 
 export const PRODUCTION_BRANCH = "master";
+export const PRODUCTION_ORIGIN = "https://empyreangate.org";
+const PREVIEW_PARENT = "empyreangate.org";
 
 export type BuildKind = "production" | "preview";
 
@@ -35,3 +37,37 @@ export const PREVIEW_HEADERS = `/*
 export const PREVIEW_ROBOTS = `User-agent: *
 Disallow: /
 `;
+
+/**
+ * The hostname label a branch's Preview gets. Wrangler sends the raw branch
+ * name and Cloudflare derives the label server-side, undocumented; this
+ * mirrors Wrangler's own branch sanitiser (`sanitizeBranchName`), which is
+ * exact for plain names like `dev`. Keep preview branch names plain.
+ */
+export function previewLabel(branch: string): string {
+  const label = branch
+    .replace(/[^a-zA-Z0-9-]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+  if (!label)
+    throw new Error(`branch "${branch}" has no usable hostname label`);
+  if (label.length > 63) {
+    throw new Error(
+      `branch "${branch}" makes a ${label.length}-character hostname label; DNS allows 63. Use a shorter branch name.`,
+    );
+  }
+  return label;
+}
+
+/**
+ * Where this build will be served, for links that must load from the page's
+ * own host: the social card image above all. A Preview linked in a chat
+ * would otherwise point its card at production, which may not be live (it
+ * answered 503 when this was written) or may show a different build.
+ * Canonical links and the sitemap stay on PRODUCTION_ORIGIN regardless.
+ */
+export function siteOrigin(env: Record<string, string | undefined>): string {
+  if (buildKind(env) === "production") return PRODUCTION_ORIGIN;
+  return `https://${previewLabel(env.WORKERS_CI_BRANCH!)}.${PREVIEW_PARENT}`;
+}

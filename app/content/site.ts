@@ -5,7 +5,14 @@
 
 export const SITE = {
   name: "The Empyrean Gate",
+  /** The canonical address. Canonical links and the sitemap always use it. */
   url: "https://empyreangate.org",
+  /**
+   * Where this particular build is served: `url` in production, the
+   * Preview's own subdomain otherwise. For things that must load from the
+   * page's host, like the social card image.
+   */
+  origin: __SITE_ORIGIN__,
   tagline: "A ring of light above the dance floor.",
   description:
     "The Empyrean Gate is a sixty-foot ring of twenty-four thousand lights lofted over a gateway, with a fire beneath it. Built by the Entheos community for Burning Man 2022, it has come back every year since.",

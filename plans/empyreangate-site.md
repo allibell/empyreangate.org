@@ -185,6 +185,15 @@ preview` (Wrangler ≥ 4.135, open beta, launched 2026-09-22) gives a stable
 - **Workers Builds preview builds do set `WORKERS_CI_BRANCH`** (to `dev`), so
   the noindex switch in `scripts/build-context.ts` works as designed.
 
+- **Social cards on previews were blank** (2026-10-12): `og:image` named
+  `https://empyreangate.org/og.png`, and production answers 503 until launch.
+  Preview builds now point `og:url`/`og:image`/`twitter:image` at their own
+  subdomain (`siteOrigin()` in `scripts/build-context.ts`, injected as
+  `__SITE_ORIGIN__` via Vite `define`). Wrangler sends the raw branch name and
+  Cloudflare derives the preview label server-side, undocumented; the label
+  logic mirrors Wrangler's `sanitizeBranchName`, exact for plain names.
+  Chat apps cache link previews, so re-check with a fresh message.
+
 ## Open questions for the user
 
 None. Cameron, 2026-10-12: "stop asking." Remaining work waits on things he

@@ -104,6 +104,11 @@ whenever Workers Builds is building a branch other than master
 (`scripts/build-context.ts`). Cloudflare adds that header to workers.dev
 Previews itself, but not to custom-domain ones like `dev.empyreangate.org`.
 
+Preview builds also point their social card (`og:url`, `og:image`,
+`twitter:image`) at their own `<branch>.empyreangate.org`, so a preview link
+pasted in a chat shows the image instead of fetching it from production. The
+canonical link and the sitemap always name https://empyreangate.org.
+
 Day to day, work on a branch (`dev`, or one per change) and open the Preview
 URL Cloudflare reports on the build. Going live is a dashboard change: set the
 deploy command to `bunx wrangler deploy` and push (or retry) a master build.

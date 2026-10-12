@@ -26,14 +26,14 @@ export const meta: MetaFunction = () => {
     { property: "og:site_name", content: SITE.name },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
-    { property: "og:url", content: `${SITE.url}/` },
-    { property: "og:image", content: `${SITE.url}/og.png` },
+    { property: "og:url", content: `${SITE.origin}/` },
+    { property: "og:image", content: `${SITE.origin}/og.png` },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: `${SITE.url}/og.png` },
+    { name: "twitter:image", content: `${SITE.origin}/og.png` },
     { tagName: "link", rel: "canonical", href: `${SITE.url}/` },
   ];
 };

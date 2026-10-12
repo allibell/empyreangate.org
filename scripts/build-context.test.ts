@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildKind } from "./build-context";
+import { buildKind, previewLabel, siteOrigin } from "./build-context";
 
 describe("buildKind", () => {
   test("local and GitHub Actions builds are production", () => {
@@ -26,5 +26,36 @@ describe("buildKind", () => {
 
   test("refuses to guess when Workers Builds gives no branch", () => {
     expect(() => buildKind({ WORKERS_CI: "1" })).toThrow(/WORKERS_CI_BRANCH/);
+  });
+});
+
+describe("siteOrigin", () => {
+  test("production builds use the real domain", () => {
+    expect(siteOrigin({})).toBe("https://empyreangate.org");
+    expect(siteOrigin({ WORKERS_CI: "1", WORKERS_CI_BRANCH: "master" })).toBe(
+      "https://empyreangate.org",
+    );
+  });
+
+  test("a preview build uses its own subdomain", () => {
+    expect(siteOrigin({ WORKERS_CI: "1", WORKERS_CI_BRANCH: "dev" })).toBe(
+      "https://dev.empyreangate.org",
+    );
+  });
+});
+
+describe("previewLabel", () => {
+  test("plain names pass through", () => {
+    expect(previewLabel("dev")).toBe("dev");
+  });
+
+  test("mirrors Wrangler's sanitiser for anything else", () => {
+    expect(previewLabel("Feature/New_Photos")).toBe("feature-new-photos");
+    expect(previewLabel("--a//b--")).toBe("a-b");
+  });
+
+  test("refuses labels DNS can't hold", () => {
+    expect(() => previewLabel("///")).toThrow(/no usable hostname label/);
+    expect(() => previewLabel("x".repeat(64))).toThrow(/DNS allows 63/);
   });
 });
