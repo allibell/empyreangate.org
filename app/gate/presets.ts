@@ -111,7 +111,7 @@ export const SCENES: Scene[] = [
   {
     id: "ember",
     name: "Ember",
-    blurb: "Flames climbing in from the rim toward the cauldron.",
+    blurb: "Flames climbing in from the rim toward the centre.",
     masterSpeed: 1,
     layers: [
       layer("solid", {

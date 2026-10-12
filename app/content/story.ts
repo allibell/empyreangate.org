@@ -30,10 +30,10 @@ export const PIECE: Section = {
   heading: "A canopy by day. A ring of light by night.",
   paragraphs: [
     {
-      text: "The Empyrean Gate is a sixty-foot shade structure lofted twenty-one feet above the ground, with a thirteen-foot gateway at its centre. Beneath the gateway hangs the Empyrean cauldron, its fire burning about a foot above the ground. By day the canopy shades a civic plaza at the Entheos camp. After dark it becomes a fifty-foot ring of light over a dance floor.",
+      text: "The Empyrean Gate is a sixty-foot shade structure lofted twenty-one feet above the ground, with a thirteen-foot gateway at its centre. Beneath the gateway, the fire: some years the Empyrean cauldron, hung a foot off the ground; every year, the people who gather under the ring. By day the canopy shades a civic plaza at the Entheos camp. After dark it becomes a fifty-foot ring of light over a dance floor.",
     },
     {
-      text: "Empyrean is the highest heaven: the sphere of fire in the old cosmologies, from the Greek empyros, “in the fire.” The gate is a threshold between the ground and that sky, and the cauldron is the fire that joins them.",
+      text: "Empyrean is the highest heaven: the sphere of fire in the old cosmologies, from the Greek empyros, “in the fire.” The gate is a threshold between the ground and that sky, and whatever burns beneath it is what joins them.",
     },
     {
       text: "Entheos conceived it as a place that invites contemplation: of self, of others, and of collaborative purpose. It is also, most nights, where people dance.",
@@ -72,7 +72,10 @@ export const LIGHT: Section = {
 };
 
 export interface Appearance {
-  year: string;
+  /** When, as shown: "Aug–Sep 2022", "May 2023", "Oct 17, 2026". */
+  when: string;
+  /** Sortable ISO date of the first day, for structured data later. */
+  date: string;
   event: string;
   place: string;
   note?: string;
@@ -83,59 +86,70 @@ export interface Appearance {
 /**
  * Where the gate has been. Keep this honest: an entry here is a claim.
  *
- * unSCruz: 2023, 2024, 2025 (confirmed by Cameron). Love Burn: 2024 is
- * sourced; other years unconfirmed, so not listed.
+ * unSCruz: 2023, 2024, 2025 (confirmed by Cameron; May 4–7, May 2–5, May 1–3).
+ * Love Burn: 2024 is sourced (mid-February); other years unconfirmed, so not
+ * listed. Burning Man runs the last week of August into September.
  */
 export const APPEARANCES: Appearance[] = [
   {
-    year: "2022",
+    when: "Aug–Sep 2022",
+    date: "2022-08-28",
     event: "Burning Man",
     place: "Black Rock City, Nevada",
     note: "The core structure is raised for the first time at the Entheos plaza.",
   },
   {
-    year: "2023",
+    when: "May 2023",
+    date: "2023-05-04",
     event: "unSCruz",
     place: "Santa Cruz, California",
     note: "First trip off the playa, to the Santa Cruz regional.",
   },
   {
-    year: "2023",
+    when: "Aug–Sep 2023",
+    date: "2023-08-27",
     event: "Burning Man",
     place: "Black Rock City, Nevada",
   },
   {
-    year: "2024",
+    when: "Feb 2024",
+    date: "2024-02-15",
     event: "Love Burn",
     place: "Miami, Florida",
   },
   {
-    year: "2024",
+    when: "May 2024",
+    date: "2024-05-02",
     event: "unSCruz",
     place: "Santa Cruz, California",
   },
   {
-    year: "2024",
+    when: "Aug–Sep 2024",
+    date: "2024-08-25",
     event: "Burning Man",
     place: "Black Rock City, Nevada",
   },
   {
-    year: "2025",
+    when: "May 2025",
+    date: "2025-05-01",
     event: "unSCruz",
     place: "Santa Cruz, California",
   },
   {
-    year: "2025",
+    when: "Aug–Sep 2025",
+    date: "2025-08-24",
     event: "Burning Man",
     place: "Black Rock City, Nevada",
   },
   {
-    year: "2026",
+    when: "Aug–Sep 2026",
+    date: "2026-08-30",
     event: "Burning Man",
     place: "Black Rock City, Nevada",
   },
   {
-    year: "Oct 17, 2026",
+    when: "Oct 17, 2026",
+    date: "2026-10-17",
     event: "Burning Man Decompression",
     place: "The Loom, Oakland, California",
     note: "Next.",

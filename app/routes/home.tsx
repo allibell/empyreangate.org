@@ -310,7 +310,9 @@ export default function Home() {
           <ol className="timeline">
             {APPEARANCES.map((a, i) => (
               <li key={i} className={a.upcoming ? "upcoming" : undefined}>
-                <span className="timeline-year">{a.year}</span>
+                <time className="timeline-year" dateTime={a.date}>
+                  {a.when}
+                </time>
                 <span className="timeline-event">
                   <strong>{a.event}</strong>
                   <span className="timeline-place">{a.place}</span>

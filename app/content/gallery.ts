@@ -36,7 +36,7 @@ export const PHOTOS: Photo[] = [
   },
   {
     slot: "gateway-fire",
-    caption: "The gateway and the Empyrean cauldron.",
+    caption: "The gateway, and the fire beneath it.",
     orientation: "portrait",
   },
   {

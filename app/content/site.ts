@@ -8,7 +8,7 @@ export const SITE = {
   url: "https://empyreangate.org",
   tagline: "A ring of light above the dance floor.",
   description:
-    "The Empyrean Gate is a sixty-foot ring of twenty-four thousand lights lofted over a gateway and a hanging fire. Built by the Entheos community for Burning Man 2022, it has come back every year since.",
+    "The Empyrean Gate is a sixty-foot ring of twenty-four thousand lights lofted over a gateway, with a fire beneath it. Built by the Entheos community for Burning Man 2022, it has come back every year since.",
   /** The gate's software, open source. */
   software: "https://github.com/TomSawyerLabs/empyrean-gate",
   /** This site's source. */
