@@ -13,8 +13,7 @@ export const SITE = {
   software: "https://github.com/TomSawyerLabs/empyrean-gate",
   /** This site's source. */
   source: "https://github.com/cinderblock/empyreangate.org",
-  donate:
-    "https://www.givsum.com/opportunities/empyrean-gate-fundraiser-66ff2fd9d",
+  donate: "https://www.givsum.com/charities/entheos-community-village",
   entheos: {
     home: "https://www.entheosrising.org/",
     gate: "https://www.entheosrising.org/empyrean-gate-art-installation",
